@@ -25,8 +25,15 @@
 - The formula is satisfiable if it becomes empty
 
 ### DPLL
+- Implement a standard DPLL algorithm
 
 ## Displaying
 - Display each version of the formula
 - Show a table with literal values
 - Allow exporting to csv
+
+## Optimization
+- Multithreading
+- Cache results
+- Unit propagation
+- Pure literal elimination

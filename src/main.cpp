@@ -4,7 +4,7 @@
 #include <regex>
 #include <cassert>
 
-#define PARSER_REGEX R"((<->|<=>|↔)|(->|→)|(v|∨)|(^|∧)|(¬)|([a-z])|(\()|(\)))"
+#define PARSER_REGEX R"((<->|<=>|↔)|(->|→)|(v|∨)|(\^|∧)|(¬)|([a-z])|(\()|(\)))"
 
 enum class TokenType
 {

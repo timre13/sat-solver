@@ -10,4 +10,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -ggdb -D_GLIBCXX_DEBUG -
 
 add_executable(sat-solver
     src/main.cpp
+    src/Token.cpp
+    src/TreeNode.cpp
+    src/Parser.cpp
 )

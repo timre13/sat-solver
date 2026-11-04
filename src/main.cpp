@@ -21,9 +21,30 @@ int main(int argc, char** argv)
     }
 
     TreeNode tree{tokens};
-
     std::cout << tree.str() << '\n';
     std::cout << tree.str(true) << '\n';
+
+    int lastLevel=0;
+    tree.callRecursively([&lastLevel](TreeNode& node, int level){
+        //std::cout << "NODE [" << level << "]: " << node.str() << '\n';
+        if (level > lastLevel)
+            std::cout << "(";
+        else if (level < lastLevel)
+            std::cout << ")";
+        lastLevel = level;
+        std::cout << node.str();
+    });
+    std::cout << ")\n";
+
+    tree.callRecursively([](TreeNode& node, int){
+        for (auto child : node.getChildren())
+        {
+            if (child->getValue() && child->getValue()->getType() == TokenType::Implication)
+            {
+                std::cout << "Implication\n";
+            }
+        }
+    });
 
     return 0;
 };

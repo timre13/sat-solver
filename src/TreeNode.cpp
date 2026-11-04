@@ -47,7 +47,21 @@ void TreeNode::loadTokens(Token::tokenConstIt_t it, Token::tokenConstIt_t end)
     }
 }
 
+void TreeNode::callRecursively(std::function<void(TreeNode&, int)> func, int level)
 {
+    for (const auto& child : m_children)
+    {
+        func(*child, level);
+        child->callRecursively(func, level+1);
+    }
+}
+
+void TreeNode::callRecursively(std::function<void(TreeNode&, int)> func)
+{
+    func(*this, 0);
+    callRecursively(func, 1);
+}
+
 std::string TreeNode::str(bool tree/*=false*/, int indent/*=-1*/) const
 {
     if (!tree)

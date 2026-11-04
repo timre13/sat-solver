@@ -47,14 +47,18 @@ void TreeNode::loadTokens(Token::tokenConstIt_t it, Token::tokenConstIt_t end)
     }
 }
 
-std::string TreeNode::str(int indent/*=-1*/) const
 {
+std::string TreeNode::str(bool tree/*=false*/, int indent/*=-1*/) const
+{
+    if (!tree)
+        return m_value ? m_value->str() : "";
+
     std::string out;
-    if (m_value)
-        out += repeatStr("│   ", indent) + "├" + "──" + ' ' + m_value->str() + '\n';
+    out += repeatStr("│   ", indent) + "├" + "──" + ' '
+        + (m_value ? m_value->str() : "()") + '\n';
     for (const auto& c : m_children)
     {
-        out += c->str(indent+1);
+        out += c->str(true, indent+1);
     }
     return out;
 }

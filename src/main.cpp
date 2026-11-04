@@ -23,6 +23,7 @@ int main(int argc, char** argv)
     TreeNode tree{tokens};
 
     std::cout << tree.str() << '\n';
+    std::cout << tree.str(true) << '\n';
 
     return 0;
 };

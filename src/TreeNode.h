@@ -32,7 +32,7 @@ public:
     static Token::tokenConstIt_t findClosingBracket(
             Token::tokenConstIt_t it, Token::tokenConstIt_t end);
 
-    std::string str(int indent=-1) const;
+    std::string str(bool tree=false, int indent=-1) const;
     operator std::string() const { return str(); }
     std::ostream& operator <<(std::ostream& s) { s << str(); return s; }
 };

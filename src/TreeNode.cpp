@@ -1,4 +1,6 @@
 #include "TreeNode.h"
+#include "Token.h"
+#include <iostream>
 
 static std::string repeatStr(const std::string& str, int count)
 {
@@ -44,6 +46,35 @@ void TreeNode::loadTokens(Token::tokenConstIt_t it, Token::tokenConstIt_t end)
             m_children.push_back(std::make_shared<TreeNode>(*it));
         }
         ++it;
+    }
+}
+
+void TreeNode::negate()
+{
+    for (size_t i{}; i < m_children.size(); ++i)
+    {
+        if (!m_children[i]->getValue()
+            || m_children[i]->getValue()->getType() == TokenType::Variable)
+        {
+            std::cout << "Negating: "
+                << (m_children[i]->getValue() ? m_children[i]->getValue()->getValue() : "()") << '\n';
+            m_children.insert(m_children.begin()+i,
+                std::make_shared<TreeNode>(std::make_shared<Token>(TokenType::Not)));
+            ++i;
+        }
+    }
+
+    for (auto& child : m_children)
+    {
+        if (!child->getValue()) continue;
+        if (child->getValue()->getType() == TokenType::Disjunction)
+        {
+            child->setValue(std::make_shared<Token>(TokenType::Conjunction));
+        }
+        else if (child->getValue()->getType() == TokenType::Conjunction)
+        {
+            child->setValue(std::make_shared<Token>(TokenType::Disjunction));
+        }
     }
 }
 

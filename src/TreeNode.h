@@ -32,6 +32,7 @@ public:
 
     std::shared_ptr<Token> getValue() { return m_value; }
     std::vector<std::shared_ptr<TreeNode>> getChildren() { return m_children; }
+    void negate();
 
     void loadTokens(Token::tokenConstIt_t it, Token::tokenConstIt_t end);
 

@@ -32,6 +32,12 @@ public:
         m_type = type;
     }
 
+    Token(TokenType type)
+    {
+        m_value = tokenTypeToStr(type);
+        m_type = type;
+    }
+
     std::string getValue() const { return m_value; }
     TokenType getType() const { return m_type; }
 
